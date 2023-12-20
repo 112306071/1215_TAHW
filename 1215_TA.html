@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Simple Calculator</h1>
+
+<script>
+    // Function to add two numbers
+    function add(num1, num2) {
+        return num1 + num2;
+    }
+
+    // Function to subtract two numbers
+    function subtract(num1, num2) {
+        return num1 - num2;
+    }
+
+    // Function to multiply two numbers
+    function multiply(num1, num2) {
+        return num1 * num2;
+    }
+
+    // Function to divide two numbers
+    function divide(num1, num2) {
+        if (num2 !== 0) {
+            return num1 / num2;
+        } else {
+            throw new Error("Cannot divide by zero");
+        }
+    }
+
+    // Function to take user input and perform calculations
+    function calculate() {
+        try {
+            // Get user input
+            var num1 = parseFloat(prompt("Enter the first number:"));
+            if (isNaN(num1)) {
+                throw new Error("Invalid input for the first number");
+            }
+
+            var num2 = parseFloat(prompt("Enter the second number:"));
+            if (isNaN(num2)) {
+                throw new Error("Invalid input for the second number");
+            }
+
+            var operation = prompt("Choose operation: +, -, *, /");
+            if (!['+', '-', '*', '/'].includes(operation)) {
+                throw new Error("Invalid operation");
+            }
+
+            // Perform calculation based on the chosen operation
+            switch (operation) {
+                case '+':
+                    result = add(num1, num2);
+                    break;
+                case '-':
+                    result = subtract(num1, num2);
+                    break;
+                case '*':
+                    result = multiply(num1, num2);
+                    break;
+                case '/':
+                    result = divide(num1, num2);
+                    break;
+                default:
+                    throw new Error("Invalid operation");
+            }
+
+            // Display the result
+            alert("Result: " + result);
+        } catch (error) {
+            // Display error messages
+            alert("Error: " + error.message);
+        }
+    }
+
+    // Loop for multiple calculations until the user chooses to exit
+    var continueCalculations = true;
+    while (continueCalculations) {
+        calculate();
+        continueCalculations = confirm("Do you want to perform another calculation?");
+    }
+</script>
+
+</body>
+</html>
